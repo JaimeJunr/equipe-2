@@ -1,13 +1,7 @@
 // CartContext.tsx
 import React, { createContext, useState, useEffect, ReactNode } from "react";
+import { Product } from "./components/types/product";
 
-// Define o tipo para um produto
-export interface Product {
-  id: number;
-  nome: string;
-  preco: number;
-  adicionais: string[];
-}
 
 // Define o tipo do contexto do carrinho
 interface CartContextType {
@@ -17,6 +11,8 @@ interface CartContextType {
   removeItem: (id: number) => void;
   clearCart: () => void;
 }
+
+
 
 export const CartContext = createContext<CartContextType | undefined>(undefined);
 
@@ -41,7 +37,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
       const itemIndex = prevCart.findIndex((item) => item.id === product.id);
       if (itemIndex !== -1) {
         const updatedCart = [...prevCart];
-        updatedCart[itemIndex].quantity += product.quantity;
+        updatedCart[itemIndex].quantidade += product.quantidade;
         return updatedCart;
       } else {
         return [...prevCart, product];
