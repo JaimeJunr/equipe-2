@@ -1,17 +1,14 @@
+import logging
 from typing import Annotated
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.exc import IntegrityError
+
 from models.produtos import CadastrarProduto, ProdutoResponse
 from database.schema import Produto, get_session, Session, Categoria
 from routes.auth import get_current_usuario
 
 router = APIRouter()
-
-from fastapi import Depends, HTTPException, status
-
-
-import logging
-
 logger = logging.getLogger(__name__)
 
 

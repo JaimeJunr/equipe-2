@@ -3,6 +3,7 @@ from datetime import datetime, timedelta, timezone
 
 import bcrypt
 import jwt
+
 from database.schema import Usuario
 
 ALGORITHM = "HS256"

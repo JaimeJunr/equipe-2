@@ -1,9 +1,8 @@
 import logging
 import os
 
-import pywhatkit
 from fastapi import APIRouter, Depends, HTTPException, BackgroundTasks
-import crcmod
+# import crcmod
 
 from database.schema import (
     Pedido,
@@ -13,9 +12,8 @@ from database.schema import (
     Session,
     Usuario,
 )
-from models import PedidoResponse, ProdutoPedidoResponse, RealizarPedido
-
-from app.pix import Payload
+from models.pedidos import PedidoResponse, ProdutoPedidoResponse, RealizarPedido
+from pix import Payload
 
 # Definição chave de pix
 CHAVE_PIX = "jaimeodairbassojuniorjaime@gmail.com"
@@ -37,8 +35,8 @@ router = APIRouter()
 
 
 
-def send_whatsapp_notification(phone_number: str, message: str, background_tasks: BackgroundTasks) -> None:
-    background_tasks.add_task(pywhatkit.sendwhatmsg_instantly, phone_number, message, 7, True, 2)
+# def send_whatsapp_notification(phone_number: str, message: str, background_tasks: BackgroundTasks) -> None:
+#     background_tasks.add_task(pywhatkit.sendwhatmsg_instantly, phone_number, message, 7, True, 2)
 
 
 @router.get("/")
@@ -111,7 +109,7 @@ async def cadastrar_pedido(
         usuario = session.query(Usuario).get(pedido.id_usuario)
 
         # Enviar notificações por e-mail e WhatsApp em background
-        send_whatsapp_notification(usuario.telefone, "Seu pedido foi cadastrado com sucesso!", background_tasks)
+        # send_whatsapp_notification(usuario.telefone, "Seu pedido foi cadastrado com sucesso!", background_tasks)
 
         logger.info(f"Pedido {pedido.id} cadastrado com sucesso para o usuário {pedido.id_usuario}.")
 

@@ -3,14 +3,13 @@ from datetime import timedelta
 from typing import Annotated
 
 import jwt
-
-from app.security import autenticar_usuario, criar_token_acesso
-from database.schema import Session, Usuario, get_session
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from models.auth import Token
 
-from app.security import verifica_token_acesso
+from security import autenticar_usuario, criar_token_acesso
+from database.schema import Session, Usuario, get_session
+from models.auth import Token
+from security import verifica_token_acesso
 
 router = APIRouter()
 
