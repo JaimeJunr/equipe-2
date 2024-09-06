@@ -1,10 +1,11 @@
 from datetime import timedelta
 
-from app.security import get_hashed_senha, criar_token_acesso
-from database.schema import Usuario, get_session, Session
 from fastapi import APIRouter, Depends, HTTPException
-from models import CadastroUsuario, UsuarioResponse, UsuarioResponseToken
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
+
+from database.schema import Usuario, get_session, Session
+from models.usuarios import CadastroUsuario, UsuarioResponse, UsuarioResponseToken
+from security import get_hashed_senha, criar_token_acesso
 
 
 router = APIRouter()

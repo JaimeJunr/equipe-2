@@ -3,15 +3,16 @@ import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+
 from routes import (
-    produtos_router,
-    auth_router,
-    pedidos_router,
-    usuarios_router,
-    categorias_router,
-    admin_router,
+    produtos,
+    auth,
+    pedidos,
+    usuarios,
+    categorias,
+    admin,
 )
-from starlette.responses import JSONResponse
 
 # Criar pasta de logs se não existir
 os.makedirs("logs", exist_ok=True)
@@ -38,14 +39,15 @@ app.add_middleware(
 )
 
 
+
 # Incluir os routers com prefixos e tags
 routers = [
-    (usuarios_router, '/usuarios', ['Usuários']),
-    (categorias_router, '/categorias', ['Categorias']),
-    (produtos_router, '/produtos', ['Produtos']),
-    (pedidos_router, '/pedidos', ['Pedidos']),
-    (auth_router, '/auth', ['Auth']),
-    (admin_router, '/admin', ['Admin']),
+    (usuarios.router, '/usuarios', ['Usuários']),
+    (categorias.router, '/categorias', ['Categorias']),
+    (produtos.router, '/produtos', ['Produtos']),
+    (pedidos.router, '/pedidos', ['Pedidos']),
+    (auth.router, '/auth', ['Auth']),
+    (admin.router, '/admin', ['Admin']),
 ]
 
 for router, prefix, tags in routers:

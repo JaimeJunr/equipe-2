@@ -1,6 +1,8 @@
 from typing import Annotated
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.exc import IntegrityError
+
 from models.categorias import CadastrarCategoria, CategoriaResponse, ProdutoCategoria
 from database.schema import Categoria, get_session, Session
 from routes.auth import get_current_usuario

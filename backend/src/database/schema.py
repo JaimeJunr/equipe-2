@@ -1,7 +1,7 @@
 from sqlalchemy import JSON, Boolean, Column, DateTime, Float, ForeignKey, Integer, String, Table, create_engine, func
-from sqlalchemy.orm import Session, declarative_base, relationship
+from sqlalchemy.orm import Session, DeclarativeBase, relationship
 
-URL = "sqlite:///database/database.db"
+URL = "sqlite:///src/database/database.db"
 
 engine = create_engine(URL)
 
@@ -13,7 +13,8 @@ def get_session():
         session.close()
 
 
-Base = declarative_base()
+class Base(DeclarativeBase):
+    pass
 
 class PedidoProduto(Base):
     __tablename__ = 'pedido_produto'
